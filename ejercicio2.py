@@ -34,9 +34,7 @@ alto, ancho = imagen_gray.shape
 for x in range(alto):
     for y in range(ancho):
         operador_log = (c * (np.log10(1 + imagen_gray[x][y])))
-        if(operador_log.all() < 0):
-            imagen_resultado[x][y] = 0
-        elif(operador_log.all() > 255):
+        if(operador_log.all() > 255):
             imagen_resultado[x][y] = 255
         else:
             imagen_resultado[x][y] = operador_log
