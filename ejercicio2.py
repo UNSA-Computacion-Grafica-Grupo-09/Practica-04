@@ -27,24 +27,37 @@ imagen_resultado = cv2.cvtColor(imagen_resultado, cv2.COLOR_BGR2RGB)
 #c = 90
 #c = 209
 #c = 210
-
-#Aplicamos el metodo de transformcion log
-c = 255 / np.log10(1 + np.max(imagen_gray))
-
+c = 100
 
 alto, ancho = imagen_gray.shape
 
-def operador_punto(pixel_RGB):
-    pixel = 1 + pixel_RGB
-    loga = np.log10(pixel)
-    return (c * (loga))
-    
-
-
 for x in range(alto):
     for y in range(ancho):
-        imagen_resultado[x][y] = operador_punto(imagen_gray[x][y])
-        
-print(operador_punto(imagen_resultado))
+        operador_log = (c * (np.log10(1 + imagen_gray[x][y])))
+        if(operador_log.all() < 0):
+            imagen_resultado[x][y] = 0
+        elif(operador_log.all() > 255):
+            imagen_resultado[x][y] = 255
+        else:
+            imagen_resultado[x][y] = operador_log
+            
+#-------
+#porcion de codigo utilizada para encontar un mejor resultado calculando c
+
+#Calculamos c
+# c = 255 / np.log10(1 + np.max(imagen_gray))
+
+# def operador_punto(pixel_RGB):
+#     pixel = 1 + pixel_RGB
+#     loga = np.log10(pixel)
+#     return (c * (loga))
+    
+
+# for x in range(alto):
+#     for y in range(ancho):
+#         imagen_resultado[x][y] = operador_punto(imagen_gray[x][y])
+
+#------------
+
 plt.imshow(imagen_resultado)
-plt.savefig('mejorResultado.jpg', bbox_inches='tight')
+plt.savefig('Imagen_resultado100.jpg', bbox_inches='tight')
