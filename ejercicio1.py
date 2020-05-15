@@ -9,11 +9,13 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-imagen = cv2.imread('exp_5.jpg')
+# imagen = cv2.imread('log_1.jpg')
+# imagen_resultado = cv2.imread('log_1.jpg')
+# imagen_gray = cv2.imread('log_1.jpg', cv2.IMREAD_GRAYSCALE)
 
-imagen_resultado = cv2.imread('exp_5.jpg')
-
-imagen_gray = cv2.imread('exp_5.jpg', cv2.IMREAD_GRAYSCALE)
+imagen = cv2.imread('log_6.jpg')
+imagen_resultado = cv2.imread('log_6.jpg')
+imagen_gray = cv2.imread('log_6.jpg', cv2.IMREAD_GRAYSCALE)
 
 imagen_resultado = cv2.cvtColor(imagen_resultado, cv2.COLOR_BGR2RGB)
 
@@ -25,9 +27,11 @@ imagen_resultado = cv2.cvtColor(imagen_resultado, cv2.COLOR_BGR2RGB)
 #c = 40
 #c = 70
 #c = 90
-#c = 209
-#c = 210
-c = 100
+#c = 98
+#c = 30
+#c = 100
+#c = 105
+c=110
 
 alto, ancho = imagen_gray.shape
 
@@ -58,4 +62,4 @@ for x in range(alto):
 #------------
 
 plt.imshow(imagen_resultado)
-plt.savefig('Imagen_resultado100.jpg', bbox_inches='tight')
+plt.savefig('Imagen2_resultado0.jpg', bbox_inches='tight')
