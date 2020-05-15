@@ -25,9 +25,11 @@ imagen_resultado = cv2.cvtColor(imagen_resultado, cv2.COLOR_BGR2RGB)
 #c = 40
 #c = 70
 #c = 90
-#c = 100
-c = 209
+#c = 209
 #c = 210
+
+#Aplicamos el metodo de transformcion log
+c = 255 / np.log10(1 + np.max(imagen_gray))
 
 
 alto, ancho = imagen_gray.shape
@@ -35,8 +37,7 @@ alto, ancho = imagen_gray.shape
 def operador_punto(pixel_RGB):
     pixel = 1 + pixel_RGB
     loga = np.log10(pixel)
-    while(loga.all() <= 255 and loga.all() > 0):
-        return (c * (loga))
+    return (c * (loga))
     
 
 
@@ -46,4 +47,4 @@ for x in range(alto):
         
 print(operador_punto(imagen_resultado))
 plt.imshow(imagen_resultado)
-plt.savefig('Imagen_resultado101.jpg', bbox_inches='tight')
+plt.savefig('mejorResultado.jpg', bbox_inches='tight')
